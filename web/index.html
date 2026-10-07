@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>Havie · Personal Assistant</title>
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header><div class="brand"><span class="orb" aria-hidden="true">H</span><div><strong>HAVIE</strong><small>Your personal assistant</small></div></div><button id="disconnect" class="ghost" hidden>Disconnect</button></header>
+<main>
+<section id="pair" class="card"><span class="eyebrow">CONNECT YOUR PHONE</span><h1>Your day, a little simpler.</h1><p>Enter the pairing code shown by Havie on your PC. Your notes, plans and assistant are together here.</p><form id="pair-form"><label for="code">Pairing code</label><input id="code" type="password" autocomplete="off" spellcheck="false" required placeholder="Paste your code"><button type="submit">Connect to Havie</button></form><p class="muted">Keep your PC running and connect both devices to the same trusted Wi-Fi.</p></section>
+<div id="connected" hidden>
+<div class="welcome"><span class="eyebrow" id="date">YOUR SPACE</span><h1>What’s on your mind?</h1><p id="connection-state">Connected to your PC</p></div>
+<nav aria-label="Assistant sections"><button data-tab="today" class="active">Today</button><button data-tab="tasks">Tasks</button><button data-tab="notes">Notes</button><button data-tab="calendar">Calendar</button><button data-tab="chat">Assistant</button></nav>
+<section id="today" class="panel">
+<div class="stats"><div class="card"><strong id="task-count">0</strong><span>Open tasks</span></div><div class="card"><strong id="event-count">0</strong><span>Today’s plans</span></div><div class="card"><strong id="reminder-count">0</strong><span>Reminders</span></div></div>
+<div class="card"><h2>Today’s agenda</h2><div id="agenda-list" class="items"></div></div>
+<div class="card"><h2>A gentle nudge</h2><form id="reminder-form" class="stack"><label for="reminder-text">Remind me to</label><input id="reminder-text" required maxlength="4000" placeholder="Take a break"><label for="minutes">In how many minutes?</label><input id="minutes" type="number" min="1" max="525600" value="15" required><button>Set reminder</button></form><div id="reminders-list" class="items"></div><p class="muted">Due reminders appear while this page is open. Background phone notifications aren’t enabled.</p></div>
+<div class="card"><h2>What Havie remembers</h2><form id="memory-form" class="stack"><label for="memory-key">Preference</label><input id="memory-key" required placeholder="My name"><label for="memory-value">Value</label><input id="memory-value" required placeholder="Sam"><button>Remember</button></form><div id="memory-list" class="items"></div></div>
+</section>
+<section id="tasks" class="panel" hidden><div class="card"><h2>One thing at a time.</h2><form id="task-form" class="row"><label class="sr-only" for="task-text">New task</label><input id="task-text" required maxlength="4000" placeholder="What needs doing?"><button>Add task</button></form><div id="tasks-list" class="items"></div></div></section>
+<section id="notes" class="panel" hidden><div class="card"><h2>Keep the thought.</h2><form id="note-form" class="stack"><label for="note-text">New note</label><textarea id="note-text" required maxlength="4000" rows="4" placeholder="Ideas, lists, things to remember…"></textarea><button>Save note</button></form><div id="notes-list" class="items"></div></div></section>
+<section id="calendar" class="panel" hidden><div class="card"><h2>Make space for what matters.</h2><form id="event-form" class="stack"><label for="event-text">Appointment</label><input id="event-text" required maxlength="4000" placeholder="Meet Alex for lunch"><label for="event-date">Date and time (your PC’s timezone)</label><input id="event-date" type="datetime-local" required><button>Add appointment</button></form><div id="events-list" class="items"></div></div></section>
+<section id="chat" class="panel" hidden><div class="card"><h2>Here to help.</h2><p class="muted">Chat uses the local AI model on your PC. Commands work without AI. Saved preferences are included in AI chat.</p><div id="messages" role="log" aria-live="polite"></div><form id="message-form" class="stack"><label for="mode">Message type</label><select id="mode"><option value="chat">AI conversation</option><option value="command">Assistant command</option></select><label class="sr-only" for="message">Message</label><textarea id="message" rows="3" required maxlength="7000" placeholder="Help me plan my day…"></textarea><button>Send</button></form><p class="muted" id="pc-status"></p></div></section>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+</main>
+<dialog id="review"><h2>Review this action</h2><pre id="preview"></pre><p>Continue with the action shown above?</p><div class="row"><button id="cancel" class="ghost">Cancel</button><button id="confirm">Confirm</button></div></dialog>
+<footer>Havie · Your personal space</footer>
+</body></html>
